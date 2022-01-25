@@ -46,8 +46,12 @@ def check_choice(choice):
 # Function that prints a report of current resources
 def report():
     for resource in resources:
-        print(f"{resource.title()}: {resources[resource]}")
-
+        if resource == 'coffee':
+            print(f"{resource.title()}: {resources[resource]}g")
+        elif resource == 'money':
+            print(f"{resource.title()}: ${resources[resource]}0")
+        else:
+            print(f"{resource.title()}: {resources[resource]}ml")
 
 # Function that checks if there is sufficient resources to make the drink of choice
 def check_resources(choice_resources):
@@ -82,6 +86,20 @@ def check_transaction(choice_cost, total_money):
         return False
 
 
+# Function that updates the resources remaining in the coffee machine.
+def update_resources(choice_resources):
+    for resource in choice_resources:
+        resources[resource] -= choice_resources[resource]
+
+
+def check_lacking_resource(choice_resources):
+    lacking_resources = ''
+    for resource in choice_resources:
+        if choice_resources[resource] > resources[resource]:
+            lacking_resources += f'\n{resource.title()}'
+    return lacking_resources
+
+
 # Main program function
 def coffee_machine():
     is_running = True
@@ -104,17 +122,21 @@ def coffee_machine():
                     'nickels': 0.05,
                     'pennies': 0.01,
                 }
+                print("Please insert coins.")
                 total_money = process_coins(coins_value)
                 is_successful_transaction = check_transaction(choice_cost, total_money)
                 if is_successful_transaction:
                     resources['money'] += choice_cost
                     change = total_money - choice_cost
-                    print(f"Here is ${change} in change.")
+                    print(f"Here is ${change}0 in change.")
                     print(f"Here is your {choice}. Enjoy!")
+                    update_resources(choice_resources)
+
 
 
             else:
-                print(f'Sorry there is not enough resources.')
+                lacking_resources = check_lacking_resource(choice_resources)
+                print(f'Sorry there is not enough: {lacking_resources}')
                 continue
 
 
