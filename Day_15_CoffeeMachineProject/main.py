@@ -106,7 +106,7 @@ def coffee_machine():
     while is_running:
         choice = input("What would you like? (espresso/latte/cappuccino): ")
         if choice == 'off':
-            break
+            is_running = False
         elif choice == 'report':
             report()
             continue
