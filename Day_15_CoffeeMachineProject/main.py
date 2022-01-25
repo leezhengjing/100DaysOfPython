@@ -53,6 +53,7 @@ def report():
         else:
             print(f"{resource.title()}: {resources[resource]}ml")
 
+
 # Function that checks if there is sufficient resources to make the drink of choice
 def check_resources(choice_resources):
     if choice_resources['water'] > resources['water']:
@@ -79,7 +80,7 @@ def process_coins(coins_value):
 
 # Function that checks if transaction is successful.
 def check_transaction(choice_cost, total_money):
-    if choice_cost < total_money:
+    if choice_cost <= total_money:
         return True
     else:
         print("Sorry, thats not enough money. Money refunded.")
@@ -129,7 +130,7 @@ def coffee_machine():
                     resources['money'] += choice_cost
                     change = total_money - choice_cost
                     print(f"Here is ${change}0 in change.")
-                    print(f"Here is your {choice}. Enjoy!")
+                    print(f"Here is your ☕{choice}. Enjoy!")
                     update_resources(choice_resources)
 
 
