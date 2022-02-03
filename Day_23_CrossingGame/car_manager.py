@@ -17,7 +17,7 @@ class CarManager(Turtle):
 
     def initial_cars(self):
         for _ in range(15):
-            self.add_car((random.randint(-300, 300), random.randint(-250, 290)))
+            self.add_car((random.randint(-300, 300), random.randint(-250, 250)))
 
     def remove_car(self):
         for car in self.cars:

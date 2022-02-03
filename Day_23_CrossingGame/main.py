@@ -16,7 +16,7 @@ scoreboard = Scoreboard()
 
 
 screen.listen()
-screen.onkey(player.move, 'w')
+screen.onkey(player.go_up, 'w')
 
 
 game_is_on = True
