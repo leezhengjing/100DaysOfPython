@@ -3,7 +3,7 @@ from tkinter import *
 
 def calculate():
     converted_km = int(miles_entry.get()) * 1.60934
-    km_result.config(text=str(converted_km))
+    km_result_label.config(text=str(converted_km))
 
 
 window = Tk()
@@ -12,17 +12,14 @@ window.config(padx=20, pady=20)
 
 # Labels
 
-blank_label = Label()
-blank_label.grid(column=0, row=0)
+miles_input = Label(text="miles")
+miles_input.grid(column=2, row=0)
 
-miles = Label(text="miles")
-miles.grid(column=2, row=0)
+is_equal_label = Label(text="is equal to")
+is_equal_label.grid(column=0, row=1)
 
-is_equal_to = Label(text="is equal to")
-is_equal_to.grid(column=0, row=1)
-
-km_result = Label(text="0")
-km_result.grid(column=1, row=1)
+km_result_label = Label(text="0")
+km_result_label.grid(column=1, row=1)
 
 km = Label(text="Km")
 km.grid(column=2, row=1)
