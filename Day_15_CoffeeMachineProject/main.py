@@ -97,7 +97,7 @@ def check_lacking_resource(choice_resources):
     lacking_resources = ''
     for resource in choice_resources:
         if choice_resources[resource] > resources[resource]:
-            lacking_resources += f'\n{resource.title()}'
+            lacking_resources += f'\n{resource.card_title()}'
     return lacking_resources
 
 
