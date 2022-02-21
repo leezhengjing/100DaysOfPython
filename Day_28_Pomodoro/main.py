@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import messagebox
 import math
 
 # ---------------------------- CONSTANTS ------------------------------- #
@@ -54,12 +55,14 @@ def count_down(count):
         global timer
         timer = window.after(1000, count_down, count - 1)
     else:
+        messagebox.showinfo(title=f"Completed {reps} reps!", message="You completed a cycle!")
         start_timer()
         marks = ""
         work_sessions = math.floor(reps / 2)
         for checkmark in range(work_sessions):
             marks += "✔"
         checkmark_label.config(text=marks)
+
 
 # ---------------------------- UI SETUP ------------------------------- #
 
