@@ -27,8 +27,12 @@ songs_webpage = top_100_URL.text
 
 soup = BeautifulSoup(songs_webpage, 'html.parser')
 titles = soup.select("h3.c-title.a-no-trucate")
-song_titles = [title.getText().replace('\n', '') for title in titles]
+artists = soup.select("span.c-label.a-no-trucate")
+artists_list = [artist.getText().replace('\n', '').replace('\t', '') for artist in artists]
+print(artists_list)
 
+song_titles = [title.getText().replace('\n', '').replace('\t', '') for title in titles]
+print(song_titles)
 year = date.split("-")[0]
 
 SEARCH_API_ENDPOINT = "https://api.spotify.com/v1/search"
@@ -39,13 +43,13 @@ with open("token.txt", mode="r") as file:
 
 song_uris = []
 
-for song in song_titles:
-    result = sp.search(q=song)
+for n in range(len(song_titles)):
+    result = sp.search(q=f"track:{song_titles[n]} artist:{artists_list[n]}")
     try:
         uri = result["tracks"]["items"][0]["uri"]
         song_uris.append(uri)
     except IndexError:
-        print(f"{song} doesn't exist in Spotify, Skipped")
+        print(f"{song_titles[n]} doesn't exist in Spotify, Skipped")
 
 print(song_uris)
 
