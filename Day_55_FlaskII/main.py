@@ -24,7 +24,8 @@ def make_emphasis(function):
 
 def make_underline(function):
     def wrapper():
-        output = f"<u>{function()}</u>"
+        output = function()
+        output = f"<u>{output}</u>"
         return output
 
     return wrapper
