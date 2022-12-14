@@ -12,6 +12,7 @@ class Book(db.Model):
     title = db.Column(db.String(250), unique=True, nullable=False)
     author = db.Column(db.String(250), nullable=False)
     rating = db.Column(db.Float, nullable=False)
+    link = db.Column(db.String(250), nullable=False)
 
     # Optional: This will allow each book object to be identified by its title when printed.
     def __repr__(self):
@@ -30,7 +31,10 @@ def home():
 @app.route("/add", methods=["GET", "POST"])
 def add():
     if request.method == "POST":
-        new_book = Book(title=request.form["title"], author=request.form["author"], rating=request.form["rating"])
+        new_book = Book(title=request.form["title"],
+                        author=request.form["author"],
+                        rating=request.form["rating"],
+                        link=request.form["link"])
         db.session.add(new_book)
         db.session.commit()
 
@@ -58,6 +62,7 @@ def delete(book_id):
     db.session.delete(book_to_delete)
     db.session.commit()
     return redirect(url_for('home'))
+
 
 if __name__ == "__main__":
     app.run(debug=True)

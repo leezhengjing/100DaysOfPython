@@ -28,20 +28,21 @@ class Book(db.Model):
 # db.create_all()
 # CRUD - Create, Read, Update Delete
 # Create a new record
-entry = Book(id=1, title="Harry Potter", author="J.K. Rowling", rating=9.3)
-db.session.add(entry)
-db.session.commit()
+# entry = Book(id=1, title="Harry Potter", author="J.K. Rowling", rating=9.3)
+# db.session.add(entry)
+# db.session.commit()
 
 # Read all records
-# all_books = session.query(Book).all()
+# all_books = db.session.query(Book).all()
 
 # Read a particular record by query
-book = Book.query.filter_by(title="Harry Potter").first()
+book = Book.query.filter_by(title="Harry Potter and the Chamber of Secrets").first()
+print(book)
 
-# Update a particular record by query
-book_to_update = Book.query.filter_by(title="Harry Potter").first()
-book_to_update.title = "Harry Potter and the Chamber of Secrets"
-db.session.commit()
+# # Update a particular record by query
+# book_to_update = Book.query.filter_by(title="Harry Potter").first()
+# book_to_update.title = "Harry Potter and the Chamber of Secrets"
+# db.session.commit()
 
 # Update a record by primary key
 """book_id = 1
